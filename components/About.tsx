@@ -3,15 +3,23 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, Users, Clock, Star } from 'lucide-react';
+import Image from 'next/image';
+
+const stats = [
+  { icon: Award, number: '3+', label: 'Years Experience' },
+  { icon: Users, number: '50+', label: 'Happy Clients' },
+  { icon: Clock, number: '50+', label: 'Projects Completed' },
+  { icon: Star, number: '98%', label: 'Client Satisfaction' },
+];
+
+const skills = [
+  'Brand Identity & Visual Design',
+  'Social Media Design & Strategy',
+  'Print & Digital Marketing Materials',
+  'UI/UX Design Consultation',
+];
 
 const About = () => {
-  const stats = [
-    { icon: Award, number: '3+', label: 'Years Experience' },
-    { icon: Users, number: '50+', label: 'Happy Clients' },
-    { icon: Clock, number: '50+', label: 'Projects Completed' },
-    { icon: Star, number: '98%', label: 'Client Satisfaction' },
-  ];
-
   return (
     <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900 theme-transition">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,9 +46,11 @@ const About = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="relative">
-              <img
+              <Image
                 src="/images/mercy.jpg"
                 alt="Mercy"
+                width={500}
+                height={600}
                 className="rounded-2xl shadow-2xl"
               />
               <motion.div
@@ -71,14 +81,8 @@ const About = () => {
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 theme-transition">
               I specialize in creating visual content that not only looks stunning but also tells your brand's story effectively and drives meaningful results.
             </p>
-            
             <div className="space-y-4">
-              {[
-                'Brand Identity & Visual Design',
-                'Social Media Design & Strategy',
-                'Print & Digital Marketing Materials',
-                'UI/UX Design Consultation'
-              ].map((skill, index) => (
+              {skills.map((skill, index) => (
                 <motion.div
                   key={skill}
                   className="flex items-center space-x-3"
@@ -129,4 +133,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default React.memo(About);

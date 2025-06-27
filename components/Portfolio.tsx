@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Eye } from 'lucide-react';
+import Image from 'next/image';
 
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState('Fliers');
@@ -103,18 +104,16 @@ const Portfolio = () => {
             transition={{ duration: 0.3 }}
           >
             {filteredItems.map((item, index) => (
-              <motion.div
+              <div
                 key={item.id}
-                className="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden theme-transition"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                whileHover={{ y: -10 }}
+                className="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden theme-transition transform hover:-translate-y-2"
               >
                 <div className="relative overflow-hidden">
-                  <img
+                  <Image
                     src={item.image}
                     alt={item.title}
+                    width={400}
+                    height={256}
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -154,7 +153,7 @@ const Portfolio = () => {
                     {item.description}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </motion.div>
         </AnimatePresence>
@@ -164,7 +163,7 @@ const Portfolio = () => {
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70" onClick={() => setModalImage(null)}>
             <div className="bg-white dark:bg-gray-900 rounded-2xl p-4 max-w-3xl w-full relative" onClick={e => e.stopPropagation()}>
               <button className="absolute top-2 right-2 text-gray-700 dark:text-gray-200 text-2xl" onClick={() => setModalImage(null)}>&times;</button>
-              <img src={modalImage} alt="Full Design" className="w-full h-auto rounded-xl" />
+              <Image src={modalImage} alt="Full Design" width={900} height={600} className="w-full h-auto rounded-xl" />
             </div>
           </div>
         )}

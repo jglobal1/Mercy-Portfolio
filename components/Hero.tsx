@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Sparkles, Palette, TrendingUp } from 'lucide-react';
+import Image from 'next/image';
 
 const Hero = () => {
   const floatingElements = [
@@ -111,10 +112,13 @@ const Hero = () => {
                 transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
               />
               <div className="absolute inset-8 bg-white dark:bg-gray-800 rounded-full shadow-2xl overflow-hidden theme-transition">
-                <img
+                <Image
                   src="/images/mercy.jpg"
                   alt="Mercy Adeoye"
-                  className="w-full h-full object-cover"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover"
                 />
               </div>
             </div>
